@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { getGlobalMembers, approveMember, rejectMember } from "../../service/adminService";
+import { getGlobalMembers, approveMember, rejectMember, removeMember } from "../../service/adminService";
 import { useDialog } from "../../context/DialogContext";
-import { HiOutlineCheck, HiOutlineX } from 'react-icons/hi';
+import { HiOutlineCheck, HiOutlineX, HiOutlineTrash } from 'react-icons/hi';
 
 export default function GlobalUsers() {
   const [members, setMembers] = useState([]);
@@ -44,6 +44,20 @@ export default function GlobalUsers() {
     }
   };
 
+  const handleRemove = async (orgId, memberId) => {
+    const confirmed = await dialog.showConfirm("Are you sure you want to remove this org admin?");
+    if (!confirmed) return;
+    try {
+      await removeMember(orgId, memberId);
+      fetchMembers();
+      dialog.showAlert("Org Admin removed successfully.");
+    } catch (err) {
+      dialog.showAlert(err.message);
+    }
+  };
+
+  const filteredMembers = members.filter(member => member.role === 'org_admin');
+
   return (
     <div className="admin-section">
       <div className="panel-header">
@@ -51,13 +65,13 @@ export default function GlobalUsers() {
       </div>
 
       <div className="admin-panel">
-        <h3>All Platform Users</h3>
+        <h3>Organization Admins</h3>
         {loading ? (
           <p>Loading...</p>
         ) : error ? (
           <p style={{ color: "red" }}>{error}</p>
-        ) : members.length === 0 ? (
-          <p>No users found.</p>
+        ) : filteredMembers.length === 0 ? (
+          <p>No organization admins found.</p>
         ) : (
           <div className="admin-table-container">
             <table className="admin-table">
@@ -73,7 +87,7 @@ export default function GlobalUsers() {
                 </tr>
               </thead>
               <tbody>
-                {members.map((member) => (
+                {filteredMembers.map((member) => (
                   <tr key={member.member_id}>
                     <td data-label="Name">{member.full_name}</td>
                     <td data-label="Email">{member.email}</td>
@@ -86,7 +100,7 @@ export default function GlobalUsers() {
                     </td>
                     <td data-label="Signed Up At">{new Date(member.created_at).toLocaleString()}</td>
                     <td data-label="Actions" className="actions-cell">
-                      {member.approval_status === 'pending' && member.role === 'org_admin' ? (
+                      {member.approval_status === 'pending' ? (
                         <>
                           <button onClick={() => handleApprove(member.organization_id, member.user_id)} className="action-btn success" title="Approve">
                             <HiOutlineCheck />
@@ -96,7 +110,9 @@ export default function GlobalUsers() {
                           </button>
                         </>
                       ) : (
-                        <span style={{ color: "var(--admin-text-muted)", fontSize: "0.9rem" }}>No action needed</span>
+                        <button onClick={() => handleRemove(member.organization_id, member.member_id)} className="action-btn delete" title="Remove Org Admin">
+                          <HiOutlineTrash />
+                        </button>
                       )}
                     </td>
                   </tr>
