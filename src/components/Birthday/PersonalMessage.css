@@ -1,0 +1,64 @@
+.bb-personal-message-section {
+  padding: var(--bb-spacing-xxl) var(--bb-spacing-lg);
+  background: var(--bb-bg-message);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.bb-pm-container {
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+}
+
+.bb-pm-header {
+  margin-bottom: var(--bb-spacing-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--bb-spacing-md);
+  align-items: center;
+}
+
+.bb-pm-label {
+  color: var(--bb-primary);
+}
+
+.bb-pm-title {
+  color: var(--bb-text-deep);
+}
+
+.bb-pm-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bb-spacing-lg);
+}
+
+.bb-pm-line {
+  font-family: var(--bb-font-editorial);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  color: var(--bb-text-deep);
+  line-height: 1.4;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.bb-pm-signature-wrapper {
+  margin-top: var(--bb-spacing-xl);
+}
+
+.bb-pm-signature {
+  font-family: var(--bb-font-primary);
+  font-size: 1.1rem;
+  color: var(--bb-text-muted);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 768px) {
+  .bb-personal-message-section {
+    padding: var(--bb-spacing-xl) var(--bb-spacing-md);
+    min-height: 60vh;
+  }
+}

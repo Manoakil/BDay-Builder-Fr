@@ -1,0 +1,606 @@
+/* ==========================================================================
+   WISH WALL - CARD GRID
+   ========================================================================== */
+
+.wish-cards-grid {
+  width: 100%;
+  max-width: 680px;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 30px;
+
+  padding: 0 16px;
+
+  box-sizing: border-box;
+}
+
+
+/* ==========================================================================
+   INDIVIDUAL CARD WRAPPER
+   ========================================================================== */
+
+.wish-card-wrapper {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  box-sizing: border-box;
+
+  cursor: pointer;
+}
+
+
+/* ==========================================================================
+   WISH CARD
+   ========================================================================== */
+
+.wish-card-container {
+  width: 100%;
+  max-width: 300px;
+
+  min-height: 200px;
+
+  background: #f8f1eb;
+
+  border-radius: 4px;
+
+  position: relative;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 10px 20px rgba(130, 90, 100, 0.15),
+    0 2px 5px rgba(0, 0, 0, 0.05);
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(230, 215, 205, 0.6);
+
+  transition:
+    box-shadow 0.3s ease;
+
+  box-sizing: border-box;
+
+  /* Paper grain */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+
+/* ==========================================================================
+   CARD HOVER
+   ========================================================================== */
+
+.wish-card-wrapper:hover .wish-card-container {
+  box-shadow:
+    0 25px 45px rgba(180, 100, 120, 0.25),
+    0 8px 15px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(255, 200, 210, 0.5);
+}
+
+
+/* ==========================================================================
+   ENVELOPE BACK FLAP
+   ========================================================================== */
+
+.wish-card-container::before {
+  content: "";
+
+  position: absolute;
+
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  height: 65%;
+
+  background: #f3e9e1;
+
+  clip-path:
+    polygon(
+      0 100%,
+      50% 0,
+      100% 100%
+    );
+
+  z-index: 1;
+
+  filter:
+    drop-shadow(
+      0 -4px 4px rgba(0, 0, 0, 0.03)
+    );
+}
+
+
+/* ==========================================================================
+   LEFT FLAP
+   ========================================================================== */
+
+.wish-card-container::after {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+  left: 0;
+
+  width: 50%;
+
+  background: #faede6;
+
+  clip-path:
+    polygon(
+      0 0,
+      100% 50%,
+      0 100%
+    );
+
+  z-index: 2;
+
+  box-shadow:
+    2px 0 5px rgba(0, 0, 0, 0.03);
+}
+
+
+/* ==========================================================================
+   RIGHT FLAP
+   ========================================================================== */
+
+.wish-card-top-fold {
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+  right: 0;
+
+  width: 50%;
+
+  background: #f7e9df;
+
+  clip-path:
+    polygon(
+      100% 0,
+      0 50%,
+      100% 100%
+    );
+
+  z-index: 2;
+
+  box-shadow:
+    -2px 0 5px rgba(0, 0, 0, 0.03);
+}
+
+
+/* ==========================================================================
+   TOP ENVELOPE FLAP
+   ========================================================================== */
+
+.wish-card-container > .wish-card-top-fold {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 55%;
+  width: 100%;
+
+  background: #fbf5ef;
+
+  clip-path:
+    polygon(
+      0 0,
+      50% 100%,
+      100% 0
+    );
+
+  z-index: 3;
+
+  filter:
+    drop-shadow(
+      0 4px 6px rgba(100, 50, 60, 0.08)
+    );
+}
+
+
+/* ==========================================================================
+   WAX SEAL
+   ========================================================================== */
+
+.wish-card-wax-seal {
+  position: absolute;
+
+  top: 45%;
+  left: 50%;
+
+  transform:
+    translate(-50%, -50%);
+
+  width: 45px;
+  height: 45px;
+
+  background: #a82e38;
+
+  z-index: 4;
+
+  box-shadow:
+    inset 0 0 8px rgba(0, 0, 0, 0.3),
+    0 4px 6px rgba(0, 0, 0, 0.2),
+    0 0 0 2px rgba(168, 46, 56, 0.4);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius:
+    52% 48% 49% 51% /
+    51% 49% 51% 49%;
+
+  transition:
+    all 0.3s
+    cubic-bezier(
+      0.175,
+      0.885,
+      0.32,
+      1.275
+    );
+}
+
+
+/* ==========================================================================
+   WAX ICON
+   ========================================================================== */
+
+.wax-seal-icon {
+  color: rgba(255, 255, 255, 0.85);
+
+  font-size: 18px;
+
+  filter:
+    drop-shadow(
+      0 1px 1px rgba(0, 0, 0, 0.4)
+    );
+}
+
+
+/* ==========================================================================
+   WAX HOVER
+   ========================================================================== */
+
+.wish-card-wrapper:hover .wish-card-wax-seal {
+  transform:
+    translate(-50%, -50%)
+    scale(1.15)
+    rotate(5deg);
+
+  background: #b8333f;
+
+  box-shadow:
+    inset 0 0 10px rgba(0, 0, 0, 0.2),
+    0 6px 10px rgba(0, 0, 0, 0.25),
+    0 0 15px rgba(255, 105, 180, 0.6);
+}
+
+
+/* ==========================================================================
+   CONTENT
+   ========================================================================== */
+
+.wish-card-content {
+  position: absolute;
+
+  bottom: 20px;
+
+  left: 0;
+  right: 0;
+
+  text-align: center;
+
+  z-index: 5;
+
+  pointer-events: none;
+}
+
+
+/* ==========================================================================
+   NAME
+   ========================================================================== */
+
+.wish-card-name {
+  font-family:
+    "Brush Script MT",
+    "Segoe Script",
+    cursive;
+
+  font-size: 32px;
+
+  color: #7b4c59;
+
+  margin: 0;
+
+  font-weight: 400;
+
+  line-height: 1.1;
+
+  text-shadow:
+    0 1px 2px rgba(255, 255, 255, 0.9);
+}
+
+
+/* ==========================================================================
+   SUBTITLE
+   ========================================================================== */
+
+.wish-card-subtitle {
+  font-family: Arial, sans-serif;
+
+  font-size: 10px;
+
+  text-transform: uppercase;
+
+  letter-spacing: 3px;
+
+  color: #c48b99;
+
+  margin-top: 4px;
+
+  opacity: 0;
+
+  transform: translateY(10px);
+
+  transition:
+    all 0.3s ease;
+}
+
+
+/* ==========================================================================
+   SUBTITLE HOVER
+   ========================================================================== */
+
+.wish-card-wrapper:hover .wish-card-subtitle {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+
+/* ==========================================================================
+   TABLET
+   ========================================================================== */
+
+@media (max-width: 900px) {
+
+  .wish-cards-grid {
+    max-width: 620px;
+
+    gap: 18px;
+
+    padding: 0 14px;
+  }
+
+  .wish-card-container {
+    max-width: none;
+
+    min-height: 185px;
+  }
+
+  .wish-card-name {
+    font-size: 28px;
+  }
+}
+
+
+/* ==========================================================================
+   MOBILE
+   2 CARDS PER ROW
+   ========================================================================== */
+
+@media (max-width: 700px) {
+
+  .wish-cards-grid {
+    width: 100% !important;
+
+    display: grid !important;
+    
+    grid-template-columns: repeat(2, 1fr) !important;
+
+
+    gap: 14px !important;
+
+    padding: 0 10px !important;
+
+    margin: 0 auto;
+
+    box-sizing: border-box;
+  }
+
+
+  .wish-card-wrapper {
+    width: 100% !important;
+
+    min-width: 0 !important;
+
+    display: flex;
+
+    box-sizing: border-box;
+  }
+
+
+  .wish-card-container {
+    width: 100% !important;
+
+    max-width: none !important;
+
+    min-width: 0 !important;
+
+    min-height: 160px;
+
+    box-sizing: border-box;
+  }
+
+
+  .wish-card-name {
+    font-size: 23px;
+
+    line-height: 1.1;
+  }
+
+
+  .wish-card-content {
+    bottom: 13px;
+  }
+
+
+  .wish-card-wax-seal {
+    width: 35px;
+    height: 35px;
+  }
+
+
+  .wax-seal-icon {
+    font-size: 14px;
+  }
+
+
+  .wish-card-subtitle {
+    font-size: 7px;
+
+    letter-spacing: 1.8px;
+  }
+}
+
+
+/* ==========================================================================
+   SMALL MOBILE
+   ========================================================================== */
+
+@media (max-width: 480px) {
+
+  .wish-cards-grid {
+    display: grid !important;
+
+    grid-template-columns: repeat(2, 1fr) !important;
+
+    gap: 10px !important;
+
+    padding: 0 8px !important;
+
+    width: 100% !important;
+
+    box-sizing: border-box;
+  }
+
+
+  .wish-card-wrapper {
+    width: 100% !important;
+
+    min-width: 0 !important;
+  }
+
+
+  .wish-card-container {
+    width: 100% !important;
+
+    max-width: none !important;
+
+    min-width: 0 !important;
+
+    min-height: 145px;
+  }
+
+
+  .wish-card-name {
+    font-size: 20px;
+  }
+
+
+  .wish-card-content {
+    bottom: 11px;
+  }
+
+
+  .wish-card-wax-seal {
+    width: 32px;
+    height: 32px;
+  }
+
+
+  .wax-seal-icon {
+    font-size: 12px;
+  }
+
+
+  .wish-card-subtitle {
+    font-size: 6px;
+
+    letter-spacing: 1.4px;
+  }
+}
+
+
+/* ==========================================================================
+   VERY SMALL PHONES
+   ========================================================================== */
+
+@media (max-width: 380px) {
+
+  .wish-cards-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+
+    gap: 8px !important;
+
+    padding: 0 6px !important;
+  }
+
+
+  .wish-card-container {
+    min-height: 130px;
+  }
+
+
+  .wish-card-name {
+    font-size: 18px;
+  }
+
+
+  .wish-card-content {
+    bottom: 9px;
+  }
+
+
+  .wish-card-wax-seal {
+    width: 29px;
+    height: 29px;
+  }
+
+
+  .wax-seal-icon {
+    font-size: 11px;
+  }
+
+
+  .wish-card-subtitle {
+    font-size: 5.5px;
+
+    letter-spacing: 1.2px;
+  }
+}

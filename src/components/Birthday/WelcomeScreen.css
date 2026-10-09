@@ -1,0 +1,102 @@
+.bb-welcome-screen {
+  position: fixed;
+  inset: 0;
+  background: var(--bb-bg-welcome);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  text-align: center;
+  overflow: hidden;
+  padding: var(--bb-spacing-lg);
+}
+
+.bb-grain-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bb-particles-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.bb-particle {
+  position: absolute;
+  background-color: var(--bb-secondary);
+  border-radius: 50%;
+  filter: blur(1px);
+}
+
+.bb-welcome-content {
+  position: relative;
+  z-index: 10;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--bb-spacing-xl);
+}
+
+.bb-welcome-top {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bb-spacing-sm);
+}
+
+.bb-greeting-small {
+  font-family: var(--bb-font-primary);
+  font-size: 1rem;
+  color: var(--bb-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+}
+
+.bb-greeting-sub {
+  font-family: var(--bb-font-primary);
+  font-size: 1.1rem;
+  color: var(--bb-text-deep);
+  font-weight: 300;
+}
+
+.bb-welcome-hero {
+  font-size: clamp(3.5rem, 8vw, 6rem);
+  line-height: 1.1;
+  color: var(--bb-text-deep);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.bb-welcome-context {
+  font-family: var(--bb-font-primary);
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  color: var(--bb-text-muted);
+  font-weight: 300;
+  max-width: 400px;
+  line-height: 1.8;
+}
+
+.bb-welcome-action {
+  margin-top: var(--bb-spacing-md);
+}
+
+
+
+.btn-sparkle {
+  color: var(--bb-secondary);
+  font-size: 1.2rem;
+  animation: pulse-sparkle 2s infinite;
+}
+
+@keyframes pulse-sparkle {
+  0% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+  50% { transform: scale(1.2) rotate(15deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+}

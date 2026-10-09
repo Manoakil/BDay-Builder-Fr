@@ -1,0 +1,126 @@
+.bb-final-section {
+  min-height: 100vh;
+  background: var(--bb-bg-final);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  text-align: center;
+  padding: var(--bb-spacing-xxl) var(--bb-spacing-lg) var(--bb-spacing-xl);
+}
+
+.bb-final-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+}
+
+.bb-final-sequence {
+  margin-bottom: var(--bb-spacing-xxl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--bb-spacing-lg);
+}
+
+.bb-final-pause {
+  color: var(--bb-text-deep);
+}
+
+.bb-final-except {
+  font-family: var(--bb-font-primary);
+  font-size: 1.25rem;
+  color: var(--bb-text-muted);
+  font-style: italic;
+  font-weight: 300;
+}
+
+.bb-final-climax {
+  margin-bottom: var(--bb-spacing-xxl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--bb-spacing-xl);
+}
+
+.bb-final-hero {
+  color: var(--bb-text-deep);
+  line-height: 1.2;
+}
+
+.bb-final-name {
+  color: var(--bb-primary);
+  display: inline-block;
+  padding-right: 15px;
+}
+
+.bb-final-heart {
+  color: var(--bb-secondary);
+  font-size: clamp(2rem, 5vw, 4rem);
+  vertical-align: super;
+  animation: pulse-heart 2s infinite ease-in-out;
+}
+
+@keyframes pulse-heart {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+
+.bb-final-subheading {
+  font-family: var(--bb-font-primary);
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  color: var(--bb-text-deep);
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+.bb-final-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bb-spacing-md);
+  align-items: center;
+}
+
+.bb-btn-secondary {
+  background: transparent;
+  color: var(--bb-text-muted);
+  font-family: var(--bb-font-primary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  padding: 12px 30px;
+  border-radius: var(--bb-radius-pill);
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.bb-btn-secondary:hover {
+  color: var(--bb-text-deep);
+  background: rgba(36, 27, 34, 0.05);
+}
+
+.bb-final-footer {
+  margin-top: auto;
+  font-family: var(--bb-font-primary);
+  font-size: 0.85rem;
+  color: var(--bb-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding-top: var(--bb-spacing-xl);
+}
+
+.bb-footer-heart {
+  color: var(--bb-primary);
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .bb-final-climax {
+    margin-bottom: var(--bb-spacing-xl);
+  }
+}

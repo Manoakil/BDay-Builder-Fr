@@ -1,0 +1,117 @@
+:root {
+  --bg-primary: #0F0F0F;
+  --bg-secondary: #161616;
+  --text-primary: #F5F5F7;
+  --text-secondary: #AAAAAA;
+  --accent-primary: #FF4D8D;
+  --accent-secondary: #FFD166;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', 'Outfit', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+.birthday-person-container {
+  width: 100vw;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.bp-loading-screen, .bp-locked-screen {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Outfit', sans-serif;
+}
+
+.locked-content {
+  text-align: center;
+}
+
+.locked-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.locked-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.locked-content p {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: 16px;
+  min-width: 80px;
+}
+
+.countdown-item strong {
+  font-size: 2rem;
+  color: var(--accent-secondary);
+}
+
+.countdown-item span {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+}
+
+.logout-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.8rem 2rem;
+  border-radius: 30px;
+  font-family: 'Outfit', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.main-celebration {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.empty-wishes {
+  padding: 5rem 0;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+}
+
+.bp-footer {
+  text-align: center;
+  padding: 4rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}

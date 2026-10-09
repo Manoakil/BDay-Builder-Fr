@@ -1,0 +1,1067 @@
+/* ==========================================================================
+   SCROLL MEMORY EXPERIENCE
+   ========================================================================== */
+
+.memory-scroll-section {
+  position: relative;
+
+  width: 100%;
+
+  min-height: 100vh;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(255, 225, 236, 0.45),
+      transparent 45%
+    ),
+    #fff8fb;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  padding:
+    70px 0 80px;
+
+  box-sizing: border-box;
+}
+
+
+/* ==========================================================================
+   HEADING
+   ========================================================================== */
+
+.memory-scroll-heading {
+  position: relative;
+
+  z-index: 10;
+
+  text-align: center;
+
+  margin-bottom: 40px;
+}
+
+
+.memory-scroll-heading > span {
+  font-family:
+    "Poppins",
+    sans-serif;
+
+  font-size: 10px;
+
+  letter-spacing: 4px;
+
+  color: #b27b8d;
+}
+
+
+.memory-scroll-heading h2 {
+  margin: 8px 0 10px;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size:
+    clamp(42px, 6vw, 76px);
+
+  line-height: 0.92;
+
+  font-weight: 500;
+
+  font-style: italic;
+
+  color: #5f3543;
+}
+
+
+.memory-scroll-heading p {
+  margin: 0;
+
+  font-family:
+    "Poppins",
+    sans-serif;
+
+  font-size: 13px;
+
+  color: #9b858f;
+}
+
+
+/* ==========================================================================
+   VIEWPORT
+   ========================================================================== */
+
+.memory-scroll-viewport {
+  position: relative;
+
+  width: 100%;
+
+  overflow: visible;
+}
+
+
+/* ==========================================================================
+   HORIZONTAL RAIL
+   ========================================================================== */
+
+.memory-scroll-rail {
+  display: flex;
+
+  align-items: center;
+
+  gap: 70px;
+
+  width: max-content;
+
+  padding:
+    35px
+    calc(50vw - 260px);
+
+  box-sizing: border-box;
+
+  will-change: transform;
+}
+
+
+/* ==========================================================================
+   MEMORY CARD
+   ========================================================================== */
+
+.scroll-memory-card {
+  position: relative;
+
+  flex: 0 0 520px;
+
+  width: 520px;
+
+  cursor: pointer;
+
+  transform-origin: center center;
+
+  filter:
+    grayscale(100%);
+
+  opacity: 0.25;
+
+  transition:
+    filter 0.4s ease,
+    opacity 0.4s ease;
+}
+
+
+/* ==========================================================================
+   CURRENT CARD
+   ========================================================================== */
+
+.scroll-memory-card.is-current {
+  filter:
+    grayscale(0%);
+
+  opacity: 1;
+}
+
+
+.scroll-memory-image {
+  position: relative;
+
+  width: 100%;
+
+  height: 350px;
+
+  overflow: hidden;
+
+  border-radius: 4px;
+
+  background: #eee5e9;
+
+  box-shadow:
+    0 35px 80px
+      rgba(75, 35, 50, 0.18);
+}
+
+
+.scroll-memory-image::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.16),
+      transparent 45%
+    );
+}
+
+
+.scroll-memory-image img,
+.scroll-memory-image video {
+  width: 100%;
+
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  user-select: none;
+
+  -webkit-user-drag: none;
+}
+
+
+.scroll-memory-audio {
+  width: 100%;
+
+  height: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 130px;
+
+  color:
+    rgba(123, 64, 83, 0.2);
+
+  background:
+    linear-gradient(
+      135deg,
+      #f4e8ee,
+      #fff8fb
+    );
+}
+
+
+/* ==========================================================================
+   CAPTION
+   ========================================================================== */
+
+.scroll-memory-caption {
+  padding:
+    18px 5px 0;
+
+  text-align: center;
+}
+
+
+.scroll-memory-caption > span {
+  font-family:
+    "Poppins",
+    sans-serif;
+
+  font-size: 10px;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+
+  color: #b27b8d;
+}
+
+
+.scroll-memory-caption h3 {
+  margin: 5px 0 0;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 31px;
+
+  font-weight: 600;
+
+  font-style: italic;
+
+  color: #6d3f48;
+}
+
+
+/* ==========================================================================
+   FLIGHT PATH
+   ========================================================================== */
+
+.memory-flight-path {
+  position: relative;
+
+  width: min(
+    1100px,
+    88%
+  );
+
+  height: 100px;
+
+  margin:
+    30px auto 0;
+}
+
+
+/* ==========================================================================
+   BASE LINE
+   ========================================================================== */
+
+.memory-flight-line {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  top: 29px;
+
+  height: 2px;
+
+  background:
+    linear-gradient(
+      to right,
+      rgba(109, 63, 72, 0.08),
+      rgba(109, 63, 72, 0.3),
+      rgba(109, 63, 72, 0.08)
+    );
+}
+
+
+/* ==========================================================================
+   PROGRESS LINE
+   ========================================================================== */
+
+.memory-flight-progress {
+  width: 0%;
+
+  height: 100%;
+
+  background:
+    linear-gradient(
+      to right,
+      #ff4d8d,
+      #ffd166
+    );
+
+  box-shadow:
+    0 0 10px
+      rgba(255, 77, 141, 0.35);
+}
+
+
+/* ==========================================================================
+   PAPER PLANE
+   ========================================================================== */
+
+.memory-paper-plane {
+  position: absolute;
+
+  left: 0;
+
+  top: 7px;
+
+  width: 46px;
+
+  height: 46px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  transform:
+    translateX(0);
+
+  transform-origin: center;
+
+  z-index: 20;
+
+  pointer-events: none;
+
+  will-change: transform;
+}
+
+
+.memory-paper-plane span {
+  display: block;
+
+  font-size: 28px;
+
+  color: #ff4d8d;
+
+  transform:
+    rotate(-12deg);
+
+  filter:
+    drop-shadow(
+      0 4px 6px
+      rgba(255, 77, 141, 0.3)
+    );
+
+  text-shadow:
+    0 0 10px
+      rgba(255, 77, 141, 0.25);
+}
+
+
+/* ==========================================================================
+   TIMELINE DOTS
+   ========================================================================== */
+
+.memory-timeline-dots {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  top: 20px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+}
+
+
+.memory-timeline-dot {
+  position: relative;
+
+  width: 24px;
+
+  height: 35px;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  z-index: 10;
+}
+
+
+.dot-core {
+  position: absolute;
+
+  left: 50%;
+  top: 9px;
+
+  width: 8px;
+  height: 8px;
+
+  transform:
+    translateX(-50%);
+
+  border-radius: 50%;
+
+  background: #bda5ae;
+
+  box-shadow:
+    0 0 0 2px
+      #fff8fb;
+}
+
+
+.memory-timeline-dot.active
+.dot-core {
+  width: 18px;
+  height: 18px;
+
+  top: 4px;
+
+  background: transparent;
+
+  box-shadow: none;
+}
+
+
+.memory-timeline-dot.active
+.dot-core::before {
+  content: "✦";
+
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  transform:
+    translate(-50%, -50%);
+
+  font-size: 22px;
+
+  color: #ff4d8d;
+
+  text-shadow:
+    0 0 5px
+      rgba(255, 77, 141, 0.8),
+
+    0 0 14px
+      rgba(255, 77, 141, 0.6),
+
+    0 0 25px
+      rgba(255, 77, 141, 0.35);
+
+  animation:
+    memoryStarGlow
+    1.8s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes memoryStarGlow {
+
+  0%,
+  100% {
+    transform:
+      translate(-50%, -50%)
+      scale(0.9);
+
+    opacity: 0.75;
+  }
+
+  50% {
+    transform:
+      translate(-50%, -50%)
+      scale(1.2);
+
+    opacity: 1;
+  }
+}
+
+
+/* ==========================================================================
+   DATE LABEL
+   ========================================================================== */
+
+.dot-label {
+  position: absolute;
+
+  top: 37px;
+
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+  white-space: nowrap;
+
+  font-family:
+    "Poppins",
+    sans-serif;
+
+  font-size: 8px;
+
+  color: #9a828c;
+
+  transition:
+    color 0.3s ease;
+}
+
+
+.dot-label small {
+  display: block;
+
+  margin-top: 2px;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 13px;
+
+  color: #6d3f48;
+}
+
+
+.memory-timeline-dot.active
+.dot-label {
+  color: #ff4d8d;
+}
+
+
+/* ==========================================================================
+   ACTIVE MEMORY DETAILS
+   ========================================================================== */
+
+.memory-scroll-details {
+  width: min(
+    700px,
+    88%
+  );
+
+  min-height: 130px;
+
+  margin:
+    15px auto 0;
+
+  text-align: center;
+}
+
+
+.memory-detail-date {
+  font-family:
+    "Poppins",
+    sans-serif;
+
+  font-size: 10px;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+
+  color: #b27b8d;
+}
+
+
+.memory-scroll-details h3 {
+  margin:
+    7px 0 5px;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 38px;
+
+  font-style: italic;
+
+  color: #6d3f48;
+}
+
+
+.memory-scroll-details p {
+  max-width: 600px;
+
+  margin:
+    0 auto;
+
+  font-family:
+    "Poppins",
+    sans-serif;
+
+  font-size: 13px;
+
+  line-height: 1.8;
+
+  color: #8f7d87;
+}
+
+
+/* ==========================================================================
+   EXTENDED VIEWER
+   ========================================================================== */
+
+.memory-extended-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 5000;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 25px;
+
+  background:
+    rgba(25, 16, 20, 0.86);
+
+  backdrop-filter: blur(18px);
+
+  -webkit-backdrop-filter: blur(18px);
+}
+
+
+.memory-extended-modal {
+  position: relative;
+
+  width: min(
+    950px,
+    94vw
+  );
+
+  max-height: 92vh;
+
+  padding: 20px;
+
+  overflow: hidden;
+
+  border-radius: 16px;
+
+  background: #fff8fb;
+
+  box-shadow:
+    0 40px 100px
+      rgba(0, 0, 0, 0.45);
+}
+
+
+.memory-extended-close {
+  position: absolute;
+
+  top: 10px;
+  right: 10px;
+
+  z-index: 20;
+
+  width: 40px;
+  height: 40px;
+
+  border: 0;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.9);
+
+  color: #5d3a47;
+
+  font-size: 27px;
+
+  cursor: pointer;
+}
+
+
+.memory-extended-media {
+  width: 100%;
+
+  max-height: 65vh;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  overflow: hidden;
+
+  border-radius: 10px;
+
+  background: #eee5e9;
+}
+
+
+.memory-extended-media img,
+.memory-extended-media video {
+  display: block;
+
+  max-width: 100%;
+
+  max-height: 65vh;
+
+  object-fit: contain;
+}
+
+
+.extended-audio {
+  width: 100%;
+
+  min-height: 300px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 30px;
+}
+
+
+.extended-audio > div {
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 120px;
+
+  color:
+    rgba(123, 64, 83, 0.18);
+}
+
+
+.extended-audio audio {
+  width: min(
+    500px,
+    80%
+  );
+}
+
+
+.memory-extended-content {
+  text-align: center;
+
+  padding:
+    18px 10px 5px;
+}
+
+
+.memory-extended-content > span {
+  font-family:
+    "Poppins",
+    sans-serif;
+
+  font-size: 10px;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+
+  color: #b27b8d;
+}
+
+
+.memory-extended-content h3 {
+  margin:
+    5px 0;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 34px;
+
+  font-style: italic;
+
+  color: #6d3f48;
+}
+
+
+.memory-extended-content p {
+  max-width: 650px;
+
+  margin:
+    5px auto 0;
+
+  font-family:
+    "Poppins",
+    sans-serif;
+
+  font-size: 13px;
+
+  line-height: 1.7;
+
+  color: #8f7d87;
+}
+
+
+/* ==========================================================================
+   MOBILE
+   ========================================================================== */
+
+@media (max-width: 700px) {
+
+  .memory-scroll-section {
+    min-height: 100vh;
+
+    padding:
+      55px 0 60px;
+  }
+
+
+  .memory-scroll-heading {
+    margin-bottom: 20px;
+  }
+
+
+  .memory-scroll-heading h2 {
+    font-size: 46px;
+  }
+
+
+  .memory-scroll-heading p {
+    width: 85%;
+
+    margin:
+      0 auto;
+
+    font-size: 11px;
+  }
+
+
+  .memory-scroll-rail {
+    gap: 35px;
+
+    padding:
+      25px
+      calc(50vw - 125px);
+  }
+
+
+  .scroll-memory-card {
+    flex-basis: 250px;
+
+    width: 250px;
+  }
+
+
+  .scroll-memory-image {
+    height: 310px;
+  }
+
+
+  .scroll-memory-caption h3 {
+    font-size: 27px;
+  }
+
+
+  .memory-flight-path {
+    width: 86%;
+
+    height: 95px;
+
+    margin-top: 20px;
+  }
+
+
+  .memory-paper-plane {
+    width: 40px;
+    height: 40px;
+
+    top: 8px;
+  }
+
+
+  .memory-paper-plane span {
+    font-size: 23px;
+  }
+
+
+  .memory-scroll-details {
+    min-height: 120px;
+  }
+
+
+  .memory-scroll-details h3 {
+    font-size: 31px;
+  }
+
+
+  .memory-scroll-details p {
+    font-size: 11px;
+  }
+
+
+  .memory-extended-overlay {
+    padding: 10px;
+  }
+
+
+  .memory-extended-modal {
+    width: 94vw;
+
+    padding: 10px;
+
+    border-radius: 12px;
+  }
+
+
+  .memory-extended-media {
+    max-height: 60vh;
+  }
+
+
+  .memory-extended-media img,
+  .memory-extended-media video {
+    max-height: 60vh;
+  }
+
+
+  .memory-extended-content h3 {
+    font-size: 27px;
+  }
+
+
+  .memory-extended-content p {
+    font-size: 11px;
+  }
+}
+
+
+/* ==========================================================================
+   SMALL PHONES
+   ========================================================================== */
+
+@media (max-width: 480px) {
+
+  .memory-scroll-heading h2 {
+    font-size: 40px;
+  }
+
+
+  .memory-scroll-rail {
+    gap: 25px;
+
+    padding:
+      20px
+      calc(50vw - 105px);
+  }
+
+
+  .scroll-memory-card {
+    flex-basis: 210px;
+
+    width: 210px;
+  }
+
+
+  .scroll-memory-image {
+    height: 270px;
+  }
+
+
+  .scroll-memory-caption h3 {
+    font-size: 24px;
+  }
+
+
+  .memory-flight-path {
+    width: 88%;
+  }
+
+
+  .memory-timeline-dots {
+    width: 100%;
+  }
+
+
+  .dot-label {
+    font-size: 7px;
+  }
+
+
+  .dot-label small {
+    font-size: 11px;
+  }
+
+
+  .memory-scroll-details h3 {
+    font-size: 27px;
+  }
+}

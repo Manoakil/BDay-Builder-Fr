@@ -1,0 +1,108 @@
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 17, 21, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  padding: 1rem;
+}
+
+.dialog-box {
+  background: var(--admin-surface, #ffffff);
+  border: 1px solid var(--admin-border, #e2e8f0);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: dialog-pop 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes dialog-pop {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.dialog-title {
+  margin: 0;
+  padding: 1.25rem 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--admin-text, #1a202c);
+  border-bottom: 1px solid var(--admin-border, #e2e8f0);
+  background: rgba(0,0,0,0.02);
+}
+
+.dialog-message {
+  padding: 1.5rem;
+  font-size: 1.05rem;
+  color: var(--admin-text-light, #4a5568);
+  line-height: 1.5;
+}
+
+.dialog-input {
+  margin: 0 1.5rem 1.5rem 1.5rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--admin-border-focus, #cbd5e0);
+  border-radius: 6px;
+  font-size: 1rem;
+  background: var(--admin-surface, #ffffff);
+  color: var(--admin-text, #1a202c);
+  outline: none;
+  transition: border-color 0.2s;
+  width: calc(100% - 3rem);
+}
+
+.dialog-input:focus {
+  border-color: var(--admin-primary, #3182ce);
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: rgba(0,0,0,0.02);
+  border-top: 1px solid var(--admin-border, #e2e8f0);
+}
+
+.dialog-btn {
+  padding: 0.6rem 1.25rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+
+.dialog-btn.secondary {
+  background: transparent;
+  color: var(--admin-text-light, #4a5568);
+  border-color: var(--admin-border, #e2e8f0);
+}
+
+.dialog-btn.secondary:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+.dialog-btn.primary {
+  background: var(--admin-primary, #3182ce);
+  color: white;
+}
+
+.dialog-btn.primary:hover {
+  filter: brightness(1.1);
+}
+
+.dialog-btn.danger {
+  background: var(--admin-danger, #e53e3e);
+}

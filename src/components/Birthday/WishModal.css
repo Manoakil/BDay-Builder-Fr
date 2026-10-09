@@ -1,0 +1,251 @@
+/* =========================================================
+   WISH MODAL - LETTER PAPER
+   ========================================================= */
+
+.wish-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(30, 18, 20, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* =========================================================
+   LETTER PAPER CONTAINER
+   ========================================================= */
+
+.wish-modal-container {
+  position: relative;
+  width: min(1000px, 94vw);
+  aspect-ratio: 16 / 9;
+  max-height: 90vh;
+  
+  /* Allow scrolling but hide scrollbar */
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  display: flex;
+  flex-direction: column;
+
+  /* The Letter Paper Aesthetic */
+  background: linear-gradient(rgba(120,80,60,.035) 1px, transparent 1px);
+  background-size: 100% 31px;
+  background-color: #fbf0dd;
+  padding: 50px 7%;
+  border-radius: 3px;
+  
+  box-shadow:
+    0 35px 80px rgba(0, 0, 0, 0.45),
+    0 25px 70px rgba(80,40,30,.13),
+    inset 0 0 0 1px rgba(150,100,60,.08);
+}
+
+.wish-modal-container::-webkit-scrollbar {
+  display: none;
+}
+
+.wish-modal-container::before,
+.wish-modal-container::after {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  background: rgba(220,190,150,.55);
+}
+
+.wish-modal-container::before {
+  top: -15px;
+  left: 12%;
+  transform: rotate(-3deg);
+}
+
+.wish-modal-container::after {
+  bottom: -15px;
+  right: 12%;
+  transform: rotate(4deg);
+}
+
+/* =========================================================
+   CLOSE BUTTON
+   ========================================================= */
+
+.wish-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  z-index: 20;
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 250, 235, 0.6);
+  color: #5e4030;
+  font-size: 24px;
+  font-family: serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.wish-modal-close:hover {
+  background: rgba(255, 250, 235, 0.9);
+  transform: rotate(90deg);
+}
+
+/* =========================================================
+   LETTER CONTENTS
+   ========================================================= */
+
+.bb-letter-top {
+  display: flex;
+  justify-content: space-between;
+  color: var(--bb-primary, #ff4d8d);
+  font-size: 12px;
+  margin-bottom: 25px;
+  opacity: 0.6;
+}
+
+.bb-letter-body {
+  flex: 1;
+  font-family: "Garamond";
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.bb-letter-greeting {
+  font-family: "Caveat", cursive;
+  font-size: clamp(22px, 4vw, 32px);
+  color: #ff0000;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 15px;
+  max-width: 700px;
+}
+
+.bb-letter-body p {
+  font-size: clamp(15px, 3vh, 24px);
+  line-height: 1.45;
+  color: #594541;
+  margin: 10px 0;
+  max-width: 700px;
+}
+
+.bb-reveal-letter {
+  margin-top: 25px;
+  border: 1px dashed var(--bb-primary, #ff4d8d);
+  background: rgba(255,255,255,.4);
+  padding: 15px 30px;
+  color: var(--bb-primary, #ff4d8d);
+  border-radius: 4px;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bb-reveal-letter:hover {
+  background: var(--bb-primary, #ff4d8d);
+  color: white;
+}
+
+.bb-reveal-letter b {
+  margin-left: 10px;
+  font-size: 18px;
+}
+
+.bb-hidden-letter {
+  animation: letterReveal 0.8s ease both;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@keyframes letterReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.bb-signature {
+  margin-top: 30px;
+  font-family: "Caveat", cursive;
+  font-size: clamp(22px, 3vw, 32px);
+  color: var(--bb-primary, #ff4d8d);
+  text-align: center;
+}
+
+.bb-signature strong {
+  font-weight: 700;
+}
+
+/* =========================================================
+   MOBILE / RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .wish-modal-overlay {
+    padding: 12px;
+  }
+
+  .wish-modal-container {
+    width: 88vw;
+    height: 78vh;
+    aspect-ratio: auto;
+    max-width: 420px;
+    max-height: 620px;
+    border-radius: 6px;
+    padding: 40px 6%;
+    /* On small screens, background size can be adjusted for lines */
+    background-size: 100% 28px;
+  }
+
+  .bb-letter-top {
+    margin-bottom: 15px;
+  }
+
+  .bb-letter-body p {
+    font-size: clamp(14px, 4vw, 20px);
+    margin: 8px 0;
+  }
+
+  .bb-reveal-letter {
+    padding: 12px 20px;
+    font-size: 12px;
+    margin-top: 20px;
+  }
+
+  .bb-signature {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 380px) {
+  .wish-modal-container {
+    width: 86vw;
+    height: 75vh;
+  }
+
+  .bb-letter-body p {
+    font-size: 18px;
+  }
+}

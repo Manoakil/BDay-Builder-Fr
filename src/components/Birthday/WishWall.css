@@ -1,0 +1,111 @@
+/* ==========================================================================
+   WISH WALL - PREMIUM MASONRY LAYOUT
+   ========================================================================== */
+
+.wish-wall-section {
+  width: 100%;
+  padding: var(--bb-spacing-xl) var(--bb-spacing-lg) 120px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Subtle background texture */
+.wish-wall-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+.wish-wall-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 60px;
+  position: relative;
+  z-index: 2;
+}
+
+.wish-wall-header h2 {
+  font-family: var(--bb-font-editorial);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: var(--bb-text-deep);
+  margin: 0 0 15px 0;
+  font-weight: 500;
+}
+
+.wish-wall-header p {
+  font-family: var(--bb-font-primary);
+  font-size: clamp(1.1rem, 2vw, 1.25rem);
+  color: var(--bb-text-muted);
+  font-style: italic;
+  font-weight: 300;
+  margin: 0;
+}
+
+/* Masonry Grid */
+.masonry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 40px 30px;
+  max-width: 1300px;
+  margin: 0 auto;
+  align-items: start;
+  position: relative;
+  z-index: 2;
+}
+
+/* Responsive adjustments */
+@media (min-width: 1200px) {
+  .masonry-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1199px) {
+  .masonry-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 600px) and (max-width: 899px) {
+  .masonry-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 599px) {
+  .masonry-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 0 10px;
+  }
+  .wish-wall-header h2 {
+    font-size: 32px;
+  }
+}
+
+/* Empty State */
+.wish-wall-empty {
+  text-align: center;
+  padding: 100px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #a86c7d;
+}
+
+.wish-wall-empty-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+  opacity: 0.6;
+}
+
+.wish-wall-empty-text {
+  font-family: Georgia, serif;
+  font-size: 20px;
+  font-style: italic;
+  color: #7b686c;
+}

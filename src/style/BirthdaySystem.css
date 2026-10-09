@@ -1,0 +1,256 @@
+/* ==========================================================================
+   BIRTHDAY BUILDER - VISUAL SYSTEM
+   ========================================================================== */
+
+:root {
+  /* Colors */
+  --bb-primary: #FF4D8D;
+  --bb-secondary: #FFD166;
+  --bb-bg: #FFF8FB;
+  --bb-bg-white: #FFFFFF;
+  --bb-text-deep: #241B22;
+  --bb-text-muted: #8F7D87;
+  --bb-pink-soft: #FFE1EC;
+  --bb-yellow-soft: #FFF0C7;
+  --bb-accent-purple: #8B5CF6;
+  --bb-success: #65C18C;
+  --bb-vault-bg: #21141D;
+  --bb-vault-dark: #3A1829;
+
+  /* Section Backgrounds */
+  --bb-bg-welcome: linear-gradient(135deg, #FFF9E6 0%, #FFF0F5 100%);
+  --bb-bg-reveal: #FFF0F5;
+  --bb-bg-message: #F7F9F9;
+  --bb-bg-wishes-intro: #F4EEFF;
+  --bb-bg-wish-wall: #FAFAFA;
+  --bb-bg-video: #FFF5F8;
+  --bb-bg-timeline: #FFFBF2;
+  --bb-bg-final: linear-gradient(135deg, #FFE1EC 0%, #FFF0C7 100%);
+
+  /* Typography */
+  --bb-font-primary: 'Poppins', sans-serif;
+  --bb-font-editorial: 'Playfair Display', serif;
+
+  /* Shadows */
+  --bb-shadow-soft: 0 10px 30px rgba(36, 27, 34, 0.05);
+  --bb-shadow-card: 0 15px 35px rgba(36, 27, 34, 0.08);
+  --bb-shadow-float: 0 25px 50px rgba(36, 27, 34, 0.12);
+
+  /* Border Radius */
+  --bb-radius-sm: 8px;
+  --bb-radius-md: 16px;
+  --bb-radius-lg: 24px;
+  --bb-radius-pill: 9999px;
+
+  /* Spacing */
+  --bb-spacing-xs: 4px;
+  --bb-spacing-sm: 8px;
+  --bb-spacing-md: 16px;
+  --bb-spacing-lg: 32px;
+  --bb-spacing-xl: 64px;
+  --bb-spacing-xxl: 120px;
+}
+
+/* Global Resets for the Birthday Experience */
+.birthday-experience {
+  font-family: var(--bb-font-primary);
+  color: var(--bb-text-deep);
+  background-color: var(--bb-bg);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+.birthday-experience h1,
+.birthday-experience h2,
+.birthday-experience h3,
+.birthday-experience h4,
+.birthday-experience h5,
+.birthday-experience h6 {
+  font-family: var(--bb-font-editorial);
+  font-weight: 500;
+  margin: 0;
+  color: var(--bb-text-deep);
+}
+
+.birthday-experience p {
+  font-family: var(--bb-font-primary);
+  margin: 0;
+}
+
+.birthday-experience a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.birthday-experience button {
+  font-family: var(--bb-font-primary);
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Primary Button Global Style */
+.bb-btn-primary {
+  background-color: var(--bb-primary);
+  color: #FFF;
+  font-family: var(--bb-font-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 18px 45px;
+  border-radius: var(--bb-radius-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 8px 25px rgba(255, 77, 141, 0.4);
+  border: 2px solid transparent;
+}
+
+.bb-btn-primary:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(255, 77, 141, 0.5);
+  background-color: #ff337a;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.bb-btn-primary:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* Base Utility Classes */
+.bb-editorial-text {
+  font-family: var(--bb-font-editorial);
+}
+
+.bb-glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.bb-glass-dark {
+  background: rgba(33, 20, 29, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Typography Scales */
+.bb-h1 { font-size: clamp(3rem, 6vw, 5rem); line-height: 1.1; }
+.bb-h2 { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.2; }
+.bb-h3 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.2; }
+.bb-body-lg { font-size: clamp(1.125rem, 2vw, 1.25rem); font-weight: 300; }
+.bb-label { font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 500; color: var(--bb-text-muted); }
+/* ==========================================================================
+   PRINT STYLES (For Download Celebration)
+   ========================================================================== */
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bb-bg) !important;
+  }
+
+  /* Force all framer-motion elements to be visible */
+  div, section, p, h1, h2, h3, img {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  /* Expand scrollable containers */
+  .birthday-experience, 
+  .bb-main-content, 
+  .wish-wall-section,
+  .masonry-grid {
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+
+  /* Hide interactive elements and UI */
+  button, 
+  .bb-btn-primary, 
+  .bb-btn-secondary, 
+  .bb-navbar-container, 
+  .wish-modal-close,
+  .bb-final-actions,
+  .bb-welcome-action,
+  .bb-candle-phase {
+    display: none !important;
+  }
+
+  /* Prevent page breaks inside cards */
+  .wish-card, .bb-timeline-node {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 2rem !important;
+  }
+
+  /* Format Masonry for print */
+  .masonry-grid {
+    column-count: 2 !important;
+    display: block !important;
+  }
+
+  /* Ensure background colors stay */
+  .bb-reveal-screen, .bb-welcome-screen {
+    position: relative !important;
+    height: 100vh !important;
+    page-break-after: always;
+  }
+
+  .bb-final-section {
+    position: relative !important;
+    height: 100vh !important;
+    page-break-before: always;
+  }
+}
+
+/* ==========================================================================
+   EXPORT MODE STYLES (For html2canvas PDF Generation)
+   ========================================================================== */
+body.export-mode, body.export-mode * {
+  animation: none !important;
+  transition: none !important;
+}
+
+body.export-mode div, 
+body.export-mode section, 
+body.export-mode h1, 
+body.export-mode h2, 
+body.export-mode p, 
+body.export-mode img {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+body.export-mode .birthday-experience,
+body.export-mode .bb-main-content,
+body.export-mode .wish-wall-section,
+body.export-mode .masonry-grid {
+  overflow: visible !important;
+  height: auto !important;
+  max-height: none !important;
+}
+
+/* Hide action buttons in export */
+body.export-mode .bb-btn-primary,
+body.export-mode .bb-btn-secondary,
+body.export-mode .wish-modal-close,
+body.export-mode .bb-welcome-action,
+body.export-mode .bb-final-actions {
+  display: none !important;
+}

@@ -1,0 +1,430 @@
+/* ==========================================================================
+   MEMORY TIMELINE CAROUSEL
+   ========================================================================== */
+
+.bb-timeline-section {
+  position: relative;
+  width: 100%;
+  padding: 100px 0;
+  background: var(--bb-bg-timeline);
+  color: #241b22;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.bb-timeline-header {
+  width: min(800px, 90%);
+  margin: 0 auto 50px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.bb-timeline-heading {
+  margin-bottom: 10px;
+}
+
+.bb-timeline-subheading {
+  margin: 0;
+  color: #8f7d87;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* ==========================================================================
+   CAROUSEL LAYOUT
+   ========================================================================== */
+
+.bb-carousel-wrapper {
+  position: relative;
+
+  width: min(1200px, 100%);
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 60px;
+
+  box-sizing: border-box;
+}
+
+.bb-carousel-content {
+  --item-width: 320px;
+
+  position: relative;
+
+  width: 100%;
+  max-width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+
+  gap: 14px;
+
+  overflow-x: auto;
+  overflow-y: visible;
+
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  -webkit-overflow-scrolling: touch;
+
+  /*
+   * Gives the first and last memory enough
+   * space to reach the center.
+   */
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+  padding-left: calc(50% - (var(--item-width) / 2));
+  padding-right: calc(50% - (var(--item-width) / 2));
+
+  box-sizing: border-box;
+}
+
+.bb-carousel-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* This is the magic that centers the first and last items perfectly! */
+.bb-carousel-content::before,
+.bb-carousel-content::after {
+  content: '';
+  flex: 0 0 calc(50% - (var(--item-width) / 2));
+}
+
+.bb-carousel-content::-webkit-scrollbar {
+  display: none;
+}
+
+.bb-carousel-item {
+  flex: 0 0 var(--item-width);
+  scroll-snap-align: center;
+}
+
+.bb-carousel-item.active {
+  z-index: 5;
+}
+
+@media (max-width: 768px) {
+  .bb-carousel-content {
+    --item-width: 280px;
+  }
+}
+
+/* ==========================================================================
+   CAROUSEL BUTTONS
+   ========================================================================== */
+
+.bb-carousel-btn {
+  background: white;
+  border: 1px solid #ffd166;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #ff4d8d;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 77, 141, 0.15);
+  transition: all 0.3s ease;
+  z-index: 10;
+  position: absolute;
+}
+
+.bb-carousel-btn:hover {
+  background: #ff4d8d;
+  color: white;
+  transform: scale(1.05);
+}
+
+.prev-btn { left: -24px; }
+.next-btn { right: -24px; }
+
+@media (max-width: 768px) {
+  .prev-btn { left: -10px; width: 40px; height: 40px; font-size: 20px; }
+  .next-btn { right: -10px; width: 40px; height: 40px; font-size: 20px; }
+}
+
+/* ==========================================================================
+   TIMELINE ITEM LAYOUT
+   ========================================================================== */
+
+.bb-card-timeline-layout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* 1. MEDIA TOP */
+.bb-card-media-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 75%; /* 4:3 Aspect Ratio */
+  background: #f0e8ec;
+  border-radius: 16px;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(60, 30, 45, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bb-card-media {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%) contrast(0.9);
+  transition: transform 0.5s ease, filter 0.8s ease;
+}
+
+.bb-carousel-item.active .bb-card-media {
+  filter: grayscale(0%) contrast(1);
+}
+
+.bb-carousel-item.active .bb-card-media-wrapper {
+  transform: scale(1.05);
+  box-shadow: 0 15px 35px rgba(60, 30, 45, 0.15);
+  z-index: 10;
+}
+
+.bb-card-media-wrapper:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(60, 30, 45, 0.15);
+}
+
+.bb-card-media-wrapper:hover .bb-card-media {
+  transform: scale(1.05);
+}
+
+.bb-card-media-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c9aab4;
+  font-size: 40px;
+}
+
+/* 2. TIMELINE TRACK & NODE */
+.bb-timeline-track {
+  position: relative;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bb-timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(100% + 20px); /* spans to the center of next item (width + gap) */
+  height: 3px;
+  background: linear-gradient(90deg, rgba(255, 77, 141, 0.4) 0%, rgba(255, 209, 102, 0.4) 100%);
+  box-shadow: 0 0 8px rgba(255, 77, 141, 0.3);
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.bb-node-dot {
+  position: relative;
+  z-index: 2;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bb-active-star {
+  color: #ff4d8d;
+  font-size: 20px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff8fb; /* mask line behind it */
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px #fff8fb; 
+  /* Using Framer Motion layoutId handles the smooth translation! */
+}
+
+/* 3. TEXT BOTTOM */
+.bb-card-content {
+  padding: 10px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 140px; /* reserve space so items don't jitter in height */
+}
+
+.bb-node-date {
+  display: block;
+  font-family: "Poppins", sans-serif;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #b27b8d;
+  margin-bottom: 8px;
+}
+
+.bb-node-title {
+  margin: 0 0 8px;
+  color: #6d3f48;
+  font-size: 22px;
+}
+
+.bb-node-desc {
+  margin: 0;
+  color: #8f7d87;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   VIDEO & VIEWER (unchanged from previous)
+   ========================================================================== */
+
+.bb-media-video-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.bb-media-play-icon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 3px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  color: #713f53;
+  z-index: 2;
+}
+
+.bb-media-viewer-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  background: rgba(25, 16, 20, 0.84);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  overflow-y: auto;
+}
+
+.bb-media-viewer-content {
+  position: relative;
+  width: min(950px, 94vw);
+  max-height: 92vh;
+  padding: 25px;
+  border-radius: 18px;
+  background: rgba(255, 248, 251, 0.98);
+  box-shadow: 0 35px 100px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+}
+
+.bb-viewer-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 20;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: #5c3c48;
+  font-size: 27px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease;
+}
+
+.bb-viewer-close:hover {
+  transform: rotate(90deg);
+}
+
+.bb-viewer-media-container {
+  width: 100%;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f0e8ec;
+}
+
+.bb-viewer-media {
+  display: block;
+  max-width: 100%;
+  max-height: 65vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.bb-viewer-details {
+  padding: 22px 8px 5px;
+  text-align: center;
+}
+
+.bb-viewer-date {
+  display: block;
+  margin-bottom: 7px;
+  font-family: "Poppins", sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #b27b8d;
+}
+
+.bb-viewer-details h3 {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 34px;
+  color: #6d3f48;
+}
+
+.bb-viewer-details p {
+  max-width: 650px;
+  margin: 8px auto 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #8f7d87;
+}
+
+@media (max-width: 480px) {
+  .bb-media-viewer-overlay { padding: 12px; }
+  .bb-viewer-details h3 { font-size: 26px; }
+}

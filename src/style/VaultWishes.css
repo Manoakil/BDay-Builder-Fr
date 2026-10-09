@@ -1,0 +1,1578 @@
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=DM+Mono:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap");
+
+:root {
+  --cream: #fff8ed;
+  --paper: #f7ead7;
+  --paper-dark: #e9d4b6;
+  --ink: #302225;
+  --muted: #806d68;
+  --red: #a9283f;
+  --deep-red: #72182b;
+  --pink: #d97986;
+  --soft-pink: #f3c5c6;
+  --wine: #541522;
+  --gold: #b38a4b;
+  --white: #fffdf8;
+  --shadow: rgba(73, 35, 36, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: "DM Mono", monospace;
+}
+
+body.bb-lock {
+  overflow: hidden;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+::selection {
+  background: var(--red);
+  color: white;
+}
+
+
+/* ==========================================================================
+   OPENING
+   ========================================================================== */
+
+.bb-opening {
+  min-height: 100svh;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(217, 121, 134, 0.08), transparent 25%),
+    radial-gradient(circle at 80% 80%, rgba(169, 40, 63, 0.07), transparent 30%),
+    var(--cream);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  overflow: hidden;
+}
+
+.bb-opening::before,
+.bb-opening::after {
+  content: "♡";
+  position: absolute;
+  font-family: serif;
+  font-size: 140px;
+  color: rgba(169, 40, 63, 0.045);
+}
+
+.bb-opening::before {
+  left: 4%;
+  top: 12%;
+  transform: rotate(-15deg);
+}
+
+.bb-opening::after {
+  right: 5%;
+  bottom: 10%;
+  transform: rotate(20deg);
+}
+
+.bb-opening-content {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  padding: 30px 20px;
+}
+
+.bb-opening-stamp {
+  display: inline-block;
+  border: 1px solid var(--red);
+  color: var(--red);
+  padding: 7px 13px;
+  font-size: 10px;
+  letter-spacing: 3px;
+  transform: rotate(-3deg);
+  margin-bottom: 22px;
+}
+
+.bb-small-label {
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: var(--muted);
+}
+
+.bb-opening h1 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(50px, 8vw, 100px);
+  font-weight: 400;
+  margin: 20px 0 12px;
+  line-height: 0.95;
+}
+
+.bb-opening h1 span {
+  display: block;
+  font-style: italic;
+  color: var(--red);
+}
+
+.bb-opening-text {
+  font-family: "Caveat", cursive;
+  font-size: 25px;
+  line-height: 1.2;
+  color: var(--muted);
+}
+
+.bb-envelope-wrap {
+  position: relative;
+  width: 280px;
+  height: 200px;
+  margin: 35px auto 25px;
+  perspective: 900px;
+}
+
+.bb-envelope {
+  width: 280px;
+  height: 180px;
+  position: absolute;
+  bottom: 0;
+  background: #d9aeb0;
+  box-shadow: 0 20px 45px rgba(80, 30, 35, 0.15);
+}
+
+.bb-envelope-front {
+  position: absolute;
+  inset: 0;
+  background: #d59ca0;
+  clip-path: polygon(0 0, 50% 58%, 100% 0, 100% 100%, 0 100%);
+  z-index: 2;
+}
+
+.bb-envelope-flap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #e9c4c2;
+  clip-path: polygon(0 0, 50% 62%, 100% 0);
+  transform-origin: top;
+  z-index: 3;
+}
+
+.bb-letter-preview {
+  position: absolute;
+  width: 200px;
+  height: 150px;
+  background: #fffaf0;
+  left: 40px;
+  bottom: 35px;
+  z-index: 1;
+  padding-top: 15px;
+  font-family: "Caveat", cursive;
+  font-size: 26px;
+  color: var(--red);
+  transform: rotate(-2deg);
+}
+
+.bb-letter-preview strong {
+  display: block;
+  font-size: 30px;
+  margin-top: 8px;
+}
+
+.bb-envelope-sticker {
+  position: absolute;
+  z-index: 10;
+  width: 42px;
+  height: 42px;
+  background: var(--red);
+  color: white;
+  border-radius: 50%;
+  right: -17px;
+  bottom: 45px;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 7px 15px rgba(100, 20, 30, 0.2);
+}
+
+.bb-open-button {
+  border: 1px solid var(--red);
+  background: transparent;
+  color: var(--red);
+  padding: 15px 23px;
+  transition: 0.3s ease;
+}
+
+.bb-open-button span {
+  margin-left: 12px;
+}
+
+.bb-open-button:hover {
+  background: var(--red);
+  color: white;
+  transform: translateY(-3px);
+}
+
+.bb-scroll-hint {
+  font-size: 9px;
+  color: #a7968e;
+  letter-spacing: 1px;
+  margin-top: 30px;
+}
+
+
+/* ==========================================================================
+   NAV
+   ========================================================================== */
+
+.bb-nav {
+  height: 70px;
+  padding: 0 5vw;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: rgba(255, 248, 237, 0.88);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(169, 40, 63, 0.08);
+}
+
+.bb-nav-name {
+  font-family: "Caveat", cursive;
+  font-size: 25px;
+  color: var(--red);
+}
+
+.bb-nav-name span {
+  font-family: serif;
+  font-size: 18px;
+}
+
+.bb-nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.bb-nav-links a {
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.bb-nav-links a:hover {
+  color: var(--red);
+}
+
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+
+.bb-hero {
+  min-height: calc(100svh - 70px);
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+
+  background:
+    radial-gradient(circle at center, rgba(255,255,255,0.8), transparent 50%),
+    #fceceb;
+}
+
+.bb-hero-content {
+  text-align: center;
+  max-width: 850px;
+  padding: 100px 25px;
+  position: relative;
+  z-index: 5;
+}
+
+.bb-eyebrow,
+.bb-section-kicker {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--red);
+}
+
+.bb-hero h2 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(65px, 11vw, 145px);
+  line-height: 0.85;
+  font-weight: 400;
+  margin: 35px 0;
+}
+
+.bb-hero h2 em {
+  color: var(--red);
+}
+
+.bb-hero-divider {
+  width: 180px;
+  height: 1px;
+  background: var(--paper-dark);
+  margin: 0 auto 25px;
+  position: relative;
+}
+
+.bb-hero-divider span {
+  position: absolute;
+  left: 50%;
+  top: -14px;
+  transform: translateX(-50%);
+  background: var(--cream);
+  color: var(--red);
+  padding: 0 15px;
+  font-size: 18px;
+}
+
+.bb-hero-message {
+  font-family: "Caveat", cursive;
+  font-size: 28px;
+  line-height: 1.35;
+  max-width: 650px;
+  margin: auto;
+}
+
+.bb-hero-submessage {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 30px;
+}
+
+.bb-down-arrow {
+  display: inline-grid;
+  place-items: center;
+  margin-top: 60px;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--paper-dark);
+  border-radius: 50%;
+  text-decoration: none;
+  color: var(--red);
+  transition: 0.3s;
+}
+
+.bb-down-arrow:hover {
+  transform: translateY(5px);
+  background: var(--red);
+  color: white;
+}
+
+.bb-hero-decoration {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bb-cat-decoration {
+  width: 250px;
+  left: -20px;
+  bottom: -20px;
+  transform: rotate(-8deg);
+}
+
+.bb-flower-decoration {
+  width: 220px;
+  right: -30px;
+  bottom: -20px;
+  transform: rotate(8deg);
+}
+
+
+/* ==========================================================================
+   NOTE
+   ========================================================================== */
+
+.bb-note-section {
+  padding: 150px 20px;
+  background: var(--cream);
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.bb-paper-note {
+  width: min(600px, 70vw);
+  min-height: 300px;
+  background: #f8ecd9;
+  padding: 60px;
+  position: relative;
+  transform: rotate(-1deg);
+  box-shadow: 12px 15px 0 rgba(93, 48, 35, 0.08);
+}
+
+.bb-note-tape {
+  position: absolute;
+  width: 130px;
+  height: 35px;
+  background: rgba(217, 190, 160, 0.6);
+  top: -17px;
+  left: 50%;
+  transform: translateX(-50%) rotate(2deg);
+}
+
+.bb-handwritten {
+  font-family: "Caveat", cursive;
+  font-size: clamp(32px, 5vw, 50px);
+  line-height: 1.1;
+  margin: 0;
+  color: #5a413d;
+}
+
+.bb-note-small {
+  font-family: "Caveat", cursive;
+  font-size: 22px;
+  color: var(--red);
+  margin-top: 40px;
+}
+
+.bb-note-flower {
+  position: absolute;
+  width: 130px;
+  right: 30px;
+  bottom: -25px;
+  transform: rotate(8deg);
+}
+
+
+/* ==========================================================================
+   STORY INTRO
+   ========================================================================== */
+
+.bb-story-intro {
+  padding: 150px 8vw 100px;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 40px;
+  background: var(--cream);
+}
+
+.bb-section-number {
+  color: var(--red);
+  font-family: "DM Mono";
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.bb-section-copy {
+  max-width: 800px;
+}
+
+.bb-section-copy h2,
+.bb-things-header h2,
+.bb-scrapbook-title h2,
+.bb-letter-heading h2 {
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+  font-size: clamp(50px, 7vw, 90px);
+  line-height: 0.95;
+  margin: 25px 0;
+}
+
+.bb-section-copy h2 em,
+.bb-things-header h2 em,
+.bb-scrapbook-title h2 em,
+.bb-letter-heading h2 em {
+  color: var(--red);
+}
+
+.bb-section-copy > p {
+  max-width: 600px;
+  color: var(--muted);
+  line-height: 1.9;
+}
+
+.bb-typewriter-note {
+  display: inline-flex;
+  gap: 10px;
+  margin-top: 35px;
+  padding: 10px 14px;
+  background: #f0dfc8;
+  font-size: 10px;
+  transform: rotate(-2deg);
+}
+
+
+/* ==========================================================================
+   TIMELINE
+   ========================================================================== */
+
+.bb-timeline-section {
+  background: #fceceb;
+  padding: 100px 0 120px;
+  overflow: hidden;
+}
+
+.bb-timeline-top {
+  padding: 0 7vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 80px;
+}
+
+.bb-timeline-top h2 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(50px, 7vw, 85px);
+  line-height: 0.9;
+  font-weight: 400;
+  margin: 20px 0 0;
+}
+
+.bb-timeline-top h2 em {
+  color: var(--red);
+}
+
+.bb-timeline-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.bb-timeline-controls button {
+  width: 50px;
+  height: 50px;
+  border: 1px solid rgba(169, 40, 63, 0.3);
+  background: transparent;
+  color: var(--red);
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.bb-timeline-controls button:hover {
+  background: var(--red);
+  color: white;
+}
+
+.bb-timeline {
+  display: flex;
+  gap: 45px;
+  overflow-x: auto;
+  padding: 30px 8vw 50px;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--red) transparent;
+}
+
+.bb-timeline::-webkit-scrollbar {
+  height: 3px;
+}
+
+.bb-timeline::-webkit-scrollbar-track {
+  background: rgba(120, 80, 60, 0.1);
+}
+
+.bb-timeline::-webkit-scrollbar-thumb {
+  background: var(--red);
+}
+
+.bb-memory-card {
+  flex: 0 0 330px;
+  scroll-snap-align: center;
+  position: relative;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.bb-memory-card:hover {
+  transform: translateY(-10px);
+}
+
+.bb-card-up {
+  margin-top: 0;
+}
+
+.bb-card-down {
+  margin-top: 90px;
+}
+
+.bb-memory-pin {
+  width: 27px;
+  height: 27px;
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+
+  background: var(--red);
+  color: white;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  box-shadow: 0 0 0 6px #f0e1cd;
+}
+
+.bb-memory-photo {
+  height: 380px;
+  background: #e5d3bb;
+  padding: 10px;
+  box-shadow: 10px 12px 25px var(--shadow);
+  position: relative;
+}
+
+.bb-memory-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.85);
+}
+
+.bb-photo-overlay {
+  position: absolute;
+  inset: 10px;
+  display: grid;
+  place-items: center;
+  background: rgba(80, 20, 30, 0.45);
+  opacity: 0;
+  transition: 0.3s;
+  color: white;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.bb-memory-card:hover .bb-photo-overlay {
+  opacity: 1;
+}
+
+.bb-memory-content {
+  padding: 25px 8px;
+}
+
+.bb-memory-date {
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: var(--red);
+  text-transform: uppercase;
+}
+
+.bb-memory-date span {
+  margin-left: 10px;
+  color: var(--muted);
+}
+
+.bb-memory-content h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 27px;
+  font-weight: 500;
+  margin: 12px 0;
+}
+
+.bb-memory-content p {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.bb-timeline-end {
+  flex: 0 0 300px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  align-self: center;
+  color: var(--red);
+}
+
+.bb-timeline-end span {
+  font-size: 60px;
+}
+
+.bb-timeline-end p {
+  font-family: "Caveat", cursive;
+  font-size: 25px;
+}
+
+.bb-timeline-scroll-label {
+  text-align: center;
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 2px;
+  margin-top: 20px;
+}
+
+.bb-timeline-scroll-label span {
+  color: var(--red);
+  margin: 0 12px;
+}
+
+
+/* ==========================================================================
+   THINGS
+   ========================================================================== */
+
+.bb-things-section {
+  padding: 150px 8vw;
+  background: var(--cream);
+}
+
+.bb-things-header {
+  max-width: 700px;
+  margin: 40px auto 80px;
+  text-align: center;
+}
+
+.bb-things-header p {
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.bb-heart-grid {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.bb-heart-note {
+  min-height: 230px;
+  border: 1px solid rgba(169, 40, 63, 0.1);
+  background: #f7e6dc;
+  padding: 30px;
+  position: relative;
+  transition: 0.4s;
+  color: var(--ink);
+}
+
+.bb-heart-note:nth-child(2n) {
+  transform: translateY(35px) rotate(1deg);
+}
+
+.bb-heart-note:nth-child(3n) {
+  transform: rotate(-1deg);
+}
+
+.bb-heart-note:hover {
+  transform: translateY(-8px) rotate(0);
+  box-shadow: 0 20px 40px rgba(80, 30, 35, 0.1);
+}
+
+.bb-heart-symbol {
+  font-size: 70px;
+  color: var(--red);
+}
+
+.bb-heart-note small {
+  display: block;
+  color: var(--muted);
+  font-size: 8px;
+  margin-top: 10px;
+}
+
+.bb-heart-note.revealed {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  background: #f2d4d1;
+}
+
+.bb-revealed-number {
+  color: var(--red);
+  font-size: 10px;
+}
+
+.bb-heart-note.revealed p {
+  font-family: "Caveat", cursive;
+  font-size: 25px;
+  line-height: 1.15;
+}
+
+
+/* ==========================================================================
+   SCRAPBOOK
+   ========================================================================== */
+
+.bb-scrapbook {
+  padding: 130px 5vw;
+  background: #fceceb;
+  overflow: hidden;
+}
+
+.bb-scrapbook-title {
+  text-align: center;
+}
+
+.bb-scrapbook-board {
+  max-width: 1050px;
+  min-height: 750px;
+  margin: 80px auto 0;
+  position: relative;
+}
+
+.bb-polaroid {
+  position: absolute;
+  width: 260px;
+  background: #fffdf7;
+  padding: 12px 12px 35px;
+  box-shadow: 8px 12px 25px rgba(50, 30, 20, 0.16);
+  transition: 0.4s;
+}
+
+.bb-polaroid img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+
+.bb-polaroid span {
+  display: block;
+  text-align: center;
+  font-family: "Caveat", cursive;
+  font-size: 20px;
+  margin-top: 8px;
+}
+
+.bb-polaroid:hover {
+  z-index: 10;
+  transform: scale(1.06) rotate(0deg) !important;
+}
+
+.bb-polaroid-one {
+  left: 5%;
+  top: 50px;
+  transform: rotate(-7deg);
+}
+
+.bb-polaroid-two {
+  left: 34%;
+  top: 150px;
+  transform: rotate(5deg);
+}
+
+.bb-polaroid-three {
+  right: 5%;
+  top: 40px;
+  transform: rotate(7deg);
+}
+
+.bb-polaroid-four {
+  left: 25%;
+  top: 470px;
+  transform: rotate(-4deg);
+}
+
+.bb-scrapbook-sticker {
+  position: absolute;
+  right: 20%;
+  bottom: 80px;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  background: var(--red);
+  color: white;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-family: "Caveat", cursive;
+  font-size: 22px;
+  line-height: 0.9;
+  transform: rotate(-8deg);
+  box-shadow: 7px 10px 20px rgba(80, 20, 30, 0.2);
+}
+
+
+/* ==========================================================================
+   LETTER
+   ========================================================================== */
+
+.bb-letter-section {
+  padding: 160px 20px;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(169,40,63,.05), transparent 20%),
+    var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+
+.bb-letter-wrapper {
+  max-width: 850px;
+  margin: auto;
+}
+
+.bb-letter-heading {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.bb-letter-heading p {
+  color: var(--muted);
+}
+
+.bb-letter-paper {
+  position: relative;
+  background:
+    linear-gradient(rgba(120,80,60,.035) 1px, transparent 1px);
+  background-size: 100% 31px;
+  background-color: #fbf0dd;
+  padding: 70px 9%;
+  box-shadow:
+    0 25px 70px rgba(80,40,30,.13),
+    inset 0 0 0 1px rgba(150,100,60,.08);
+}
+
+.bb-letter-paper::before,
+.bb-letter-paper::after {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  background: rgba(220,190,150,.55);
+}
+
+.bb-letter-paper::before {
+  top: -15px;
+  left: 12%;
+  transform: rotate(-3deg);
+}
+
+.bb-letter-paper::after {
+  bottom: -15px;
+  right: 12%;
+  transform: rotate(4deg);
+}
+
+.bb-letter-top {
+  display: flex;
+  justify-content: space-between;
+  color: var(--red);
+  font-size: 12px;
+  margin-bottom: 40px;
+}
+
+.bb-letter-body p {
+  font-size: 25px;
+  font-family: "Garamond", serif;
+  line-height: 1.45;
+  color: #594541;
+}
+
+.bb-reveal-letter {
+  width: 100%;
+  margin-top: 35px;
+  border: 1px dashed var(--red);
+  background: rgba(255,255,255,.4);
+  padding: 20px;
+  color: var(--red);
+  transition: 0.3s;
+}
+
+.bb-reveal-letter:hover {
+  background: var(--red);
+  color: white;
+}
+
+.bb-reveal-letter b {
+  margin-left: 15px;
+}
+
+.bb-hidden-letter {
+  animation: letterReveal 0.8s ease both;
+}
+
+@keyframes letterReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.bb-signature {
+  margin-top: 50px;
+  font-family: "Caveat", cursive;
+  font-size: 28px;
+  color: var(--red);
+}
+
+
+/* ==========================================================================
+   CONFESSION
+   ========================================================================== */
+
+.bb-confession-section {
+  min-height: 100svh;
+  background:
+    radial-gradient(circle at center, #fff6f0, #f2d5d2);
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 130px 20px;
+}
+
+.bb-confession-content {
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  z-index: 5;
+}
+
+.bb-confession-stamp {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 7px 15px;
+  border: 1px solid var(--red);
+  color: var(--red);
+  font-size: 8px;
+  letter-spacing: 3px;
+  transform: rotate(-3deg);
+}
+
+.bb-confession-content h2 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(70px, 10vw, 120px);
+  font-weight: 400;
+  margin: 30px 0;
+}
+
+.bb-confession-main {
+  font-family: "Caveat", cursive;
+  font-size: 30px;
+  line-height: 1.2;
+}
+
+.bb-confession-main strong {
+  color: var(--red);
+  font-size: 38px;
+}
+
+.bb-big-heart {
+  font-size: 80px;
+  color: var(--red);
+  margin: 40px 0;
+  animation: heartbeat 1.8s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.12);
+  }
+}
+
+.bb-confession-question {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-size: 28px;
+}
+
+.bb-confession-card {
+  max-width: 650px;
+  margin: 50px auto;
+  padding: 45px;
+  background: rgba(255,255,255,.5);
+  border: 1px solid rgba(169,40,63,.1);
+  box-shadow: 0 20px 60px rgba(80,30,35,.08);
+}
+
+.bb-confession-card p {
+  font-size: 23px;
+  line-height: 1.35;
+}
+
+.bb-confession-card .bb-final-question {
+  font-size: 30px;
+  font-weight:500;
+  color: var(--red);
+  margin-top: 40px;
+}
+
+.bb-answer-area > p {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.bb-answer-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 25px;
+  flex-wrap: wrap;
+}
+
+.bb-yes-button,
+.bb-time-button {
+  padding: 17px 25px;
+  transition: 0.3s;
+}
+
+.bb-yes-button {
+  background: var(--red);
+  color: white;
+  border: 1px solid var(--red);
+  box-shadow: 0 12px 25px rgba(169,40,63,.2);
+}
+
+.bb-yes-button:hover {
+  transform: translateY(-4px) scale(1.02);
+  background: var(--deep-red);
+}
+
+.bb-yes-button span {
+  margin-left: 10px;
+}
+
+.bb-time-button {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid rgba(50,30,30,.2);
+}
+
+.bb-time-button:hover {
+  background: white;
+}
+
+.bb-time-response,
+.bb-yes-response {
+  padding: 45px 20px;
+  animation: letterReveal .8s ease both;
+}
+
+.bb-time-response span {
+  font-size: 35px;
+}
+
+.bb-time-response h3,
+.bb-yes-response h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 35px;
+  font-weight: 400;
+}
+
+.bb-time-response p,
+.bb-yes-response p {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.bb-confetti-hearts {
+  color: var(--red);
+  font-size: 25px;
+  animation: floatHearts 2s infinite;
+}
+
+@keyframes floatHearts {
+  0%,100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.bb-confession-decoration {
+  position: absolute;
+  width: 300px;
+  opacity: .8;
+}
+
+.bb-decoration-left {
+  left: -80px;
+  bottom: -30px;
+  transform: rotate(-10deg);
+}
+
+.bb-decoration-right {
+  right: -70px;
+  bottom: -30px;
+  transform: rotate(8deg);
+}
+
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+.bb-footer {
+  padding: 8px 2px 5px;
+  text-align: center;
+  background: var(--wine);
+  color: #f7e8d5;
+  position: relative;
+  overflow: hidden;
+}
+
+.bb-footer-cat {
+  width: 130px;
+  margin: 0 auto 20px;
+}
+
+.bb-footer p {
+  font-family: "Caveat", cursive;
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.bb-footer span {
+  display: block;
+  margin-top: 35px;
+  color: #d7a9a5;
+  font-size: 9px;
+  letter-spacing: 3px;
+}
+
+
+/* ==========================================================================
+   MODAL
+   ========================================================================== */
+
+.bb-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: rgba(35,15,18,.78);
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  backdrop-filter: blur(8px);
+}
+
+.bb-modal-card {
+  width: min(850px, 95vw);
+  max-height: 90vh;
+  overflow: auto;
+  background: var(--cream);
+  position: relative;
+  padding: 15px;
+  animation: modalIn .4s ease both;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.bb-modal-card > img {
+  width: 100%;
+  max-height: 65vh;
+  object-fit: contain;
+  background: #eadcc9;
+}
+
+.bb-modal-close {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  z-index: 5;
+
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: var(--red);
+  color: white;
+  font-size: 25px;
+}
+
+.bb-modal-content {
+  padding: 25px;
+}
+
+.bb-modal-content > span {
+  font-size: 9px;
+  color: var(--red);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.bb-modal-content h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 35px;
+  margin: 10px 0;
+}
+
+.bb-modal-content p {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 800px) {
+
+  .bb-nav {
+    height: 60px;
+  }
+
+  .bb-nav-links a:not(:last-child) {
+    display: none;
+  }
+
+  .bb-hero {
+    min-height: calc(100svh - 60px);
+  }
+
+  .bb-cat-decoration {
+    width: 150px;
+    left: -45px;
+    bottom: -10px;
+  }
+
+  .bb-flower-decoration {
+    width: 140px;
+    right: -35px;
+  }
+
+  .bb-paper-note {
+    padding: 45px 30px;
+  }
+
+  .bb-story-intro {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 100px 25px;
+  }
+
+  .bb-timeline-top {
+    padding: 0 25px;
+    align-items: start;
+  }
+
+  .bb-timeline-controls {
+    display: none;
+  }
+
+  .bb-timeline {
+    padding-left: 25px;
+    padding-right: 25px;
+    gap: 20px;
+  }
+
+  .bb-memory-card {
+    flex-basis: 78vw;
+  }
+
+  .bb-card-down {
+    margin-top: 40px;
+  }
+
+  .bb-memory-photo {
+    height: 330px;
+  }
+
+  .bb-heart-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .bb-heart-note {
+    min-height: 190px;
+    padding: 20px;
+  }
+
+  .bb-heart-note:nth-child(2n) {
+    transform: none;
+  }
+
+  .bb-heart-note.revealed p {
+    font-size: 21px;
+  }
+
+  .bb-scrapbook {
+    padding: 100px 15px;
+  }
+
+  .bb-scrapbook-board {
+    min-height: 850px;
+  }
+
+  .bb-polaroid {
+    width: 200px;
+  }
+
+  .bb-polaroid img {
+    height: 200px;
+  }
+
+  .bb-polaroid-one {
+    left: 3%;
+  }
+
+  .bb-polaroid-two {
+    left: 35%;
+    top: 220px;
+  }
+
+  .bb-polaroid-three {
+    right: 2%;
+    top: 480px;
+  }
+
+  .bb-polaroid-four {
+    left: 5%;
+    top: 560px;
+  }
+
+  .bb-scrapbook-sticker {
+    width: 120px;
+    height: 120px;
+    right: 5%;
+    bottom: 20px;
+    font-size: 17px;
+  }
+
+  .bb-letter-section {
+    padding: 110px 15px;
+  }
+
+  .bb-letter-paper {
+    padding: 50px 25px;
+  }
+
+  .bb-letter-body p {
+    font-size: 22px;
+  }
+
+  .bb-confession-decoration {
+    width: 160px;
+    opacity: .35;
+  }
+
+  .bb-decoration-left {
+    left: -70px;
+  }
+
+  .bb-decoration-right {
+    right: -70px;
+  }
+
+  .bb-confession-card {
+    padding: 30px 20px;
+  }
+
+}
+
+@media (max-width: 500px) {
+
+  .bb-opening h1 {
+    font-size: 60px;
+  }
+
+  .bb-opening-text {
+    font-size: 22px;
+  }
+
+  .bb-envelope-wrap {
+    transform: scale(.85);
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+
+  .bb-hero-content {
+    padding: 80px 20px;
+  }
+
+  .bb-hero h2 {
+    font-size: 65px;
+  }
+
+  .bb-hero-message {
+    font-size: 24px;
+  }
+
+  .bb-heart-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bb-heart-note:nth-child(2n),
+  .bb-heart-note:nth-child(3n) {
+    transform: none;
+  }
+
+  .bb-polaroid {
+    width: 175px;
+  }
+
+  .bb-polaroid img {
+    height: 175px;
+  }
+
+  .bb-polaroid-two {
+    left: 42%;
+  }
+
+  .bb-polaroid-three {
+    right: 0;
+  }
+
+  .bb-confession-main {
+    font-size: 25px;
+  }
+
+  .bb-confession-main strong {
+    font-size: 31px;
+  }
+
+  .bb-confession-card .bb-final-question {
+    font-size: 25px;
+  }
+
+  .bb-answer-buttons {
+    flex-direction: column;
+  }
+
+  .bb-yes-button,
+  .bb-time-button {
+    width: 100%;
+  }
+}
+
+.bb-reveal-anim {
+  animation: revealFadeIn 0.8s ease forwards;
+}
+@keyframes revealFadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
