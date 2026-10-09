@@ -25,7 +25,7 @@ export default function DownloadModal({ isOpen, onClose, eventId, stats }) {
       }, 2500);
     }
     return () => clearInterval(interval);
-  }, [step]);
+  }, [step, progressSteps.length]);
 
   const handleDownload = async () => {
     setStep('generating');

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { getAuthHeaders, API_BASE_URL } from "../service/authService";
+import { API_BASE_URL } from "../service/authService";
 import "../style/Signup.css";
 
 export default function InviteSignup() {

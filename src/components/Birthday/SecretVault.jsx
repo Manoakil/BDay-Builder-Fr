@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence, color } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import './SecretVault.css';
 
 export default function SecretVault({ vault, onUnlock, isOffline }) {

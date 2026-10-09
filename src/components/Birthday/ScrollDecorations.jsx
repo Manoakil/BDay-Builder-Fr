@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+
+const scrollThreshold = 100; // spawn every 100px of scroll
+const emojis = ['✦', '✨', '💐', '🎂', '💖', '🎉', '🦋', '🌸'];
 
 export default function ScrollDecorations() {
   const [items, setItems] = useState([]);
   
   // Throttle variable to avoid creating too many elements
-  let lastScroll = 0;
-  let scrollThreshold = 100; // spawn every 100px of scroll
-
-  const emojis = ['✦', '✨', '💐', '🎂', '💖', '🎉', '🦋', '🌸'];
+  const lastScrollRef = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScroll = window.scrollY;
-      if (Math.abs(currentScroll - lastScroll) > scrollThreshold) {
-        lastScroll = currentScroll;
+      if (Math.abs(currentScroll - lastScrollRef.current) > scrollThreshold) {
+        lastScrollRef.current = currentScroll;
 
         // Spawn a new decoration
         const newItem = {

@@ -27,7 +27,6 @@ export const generateOfflineHtml = (birthdayName, wishes = [], videoWishes = [],
   const letterTitle = dyn.letter_title || "";
   const letterBody = dyn.letter_body || "";
   const thingsILove = dyn.things_i_love || [];
-  const memories = dyn.memories || [];
 
   const css = `
     :root {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getTimelineForEvent, getMyBirthdayEvent } from '../../service/eventService';
 import { deleteTimelineEntry } from '../../service/wishService';
-import { HiOutlineTrash, HiOutlineClock, HiOutlineMap, HiOutlineEye } from 'react-icons/hi';
+import { HiOutlineTrash, HiOutlineMap, HiOutlineEye } from 'react-icons/hi';
 import PreviewModal from '../../components/admin/PreviewModal';
 import { useDialog } from '../../context/DialogContext';
 import "../../style/Admin.css";

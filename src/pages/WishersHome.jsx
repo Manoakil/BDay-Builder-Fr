@@ -209,18 +209,17 @@ function WishersHome() {
   const [tlFile, setTlFile] = useState(null);
   const [tlPreview, setTlPreview] = useState(null);
 
-  const [tlIsRecording, setTlIsRecording] = useState(false);
-  const [tlRecTime, setTlRecTime] = useState(0);
-  const [tlShowCamera, setTlShowCamera] = useState(false);
-  const [tlCameraReady, setTlCameraReady] = useState(false);
-  const [tlIsRecVideo, setTlIsRecVideo] = useState(false);
+  const [tlIsRecording] = useState(false);
+  const [, setTlRecTime] = useState(0);
+  const [, setTlShowCamera] = useState(false);
+  const [, setTlCameraReady] = useState(false);
+  const [, setTlIsRecVideo] = useState(false);
 
   // ============================================================
   // REFS
   // ============================================================
 
   const videoRef = useRef(null);
-  const tlVideoRef = useRef(null);
 
   // IMPORTANT:
   // Separate recorder references.
@@ -246,7 +245,7 @@ function WishersHome() {
 
     const checkAccess = async () => {
       try {
-        const access = await getWisherAccessStatus();
+        await getWisherAccessStatus();
 
         if (!mounted) return;
 
