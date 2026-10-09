@@ -61,11 +61,11 @@ export default function UsersManagement() {
     }
   };
 
-  const handleRemove = async (userId) => {
+  const handleRemove = async (memberId) => {
     const confirmed = await dialog.showConfirm("Are you sure you want to remove this member?");
     if (!confirmed) return;
     try {
-      await removeMember(orgId, userId);
+      await removeMember(orgId, memberId);
       fetchMembers(orgId);
       dialog.showAlert("Member removed successfully.");
     } catch (err) {
@@ -123,7 +123,7 @@ export default function UsersManagement() {
                         </button>
                       </>
                     ) : (
-                      <button onClick={() => handleRemove(member.user_id)} className="action-btn delete" title="Remove Member">
+                      <button onClick={() => handleRemove(member.id)} className="action-btn delete" title="Remove Member">
                         <HiOutlineTrash />
                       </button>
                     )}
