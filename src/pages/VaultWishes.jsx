@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "../style/VaultWishes.css";
 import { getBirthdayVault, attemptBirthdayVault } from "../service/wishService";
+import { API_BASE_URL } from "../service/authService";
 
 import ScrollReveal from "../components/Birthday/ScrollReveal";
 import WishCard from "../components/Birthday/WishCard";
@@ -28,6 +29,13 @@ function VaultWishes({ isOffline, offlineVaultData, offlineEventData, onBack }) 
   const noButtonRef = useRef(null);
 
   useEffect(() => {
+    document.title = "Wish Land";
+    return () => {
+      document.title = "Velora Studio";
+    };
+  }, []);
+
+  useEffect(() => {
     if (isOffline) {
       setVaultData(offlineVaultData);
       setEventData(offlineEventData);
@@ -38,13 +46,13 @@ function VaultWishes({ isOffline, offlineVaultData, offlineEventData, onBack }) 
       try {
         const [vault, evRes, wisherRes, secretWishesData] = await Promise.all([
           getBirthdayVault(eventId).catch(() => null),
-          fetch(`http://localhost:8000/api/v1/events/my-birthday-event`, {
+          fetch(`${API_BASE_URL}/events/my-birthday-event`, {
             headers: { "Authorization": `Bearer ${localStorage.getItem("access_token")}` }
           }).then(r => r.ok ? r.json() : null).catch(() => null),
-          fetch(`http://localhost:8000/api/v1/events/my-wisher-access`, {
+          fetch(`${API_BASE_URL}/events/my-wisher-access`, {
             headers: { "Authorization": `Bearer ${localStorage.getItem("access_token")}` }
           }).then(r => r.ok ? r.json() : null).catch(() => null),
-          fetch(`http://localhost:8000/api/v1/wishes/birthday-person-vault`, {
+          fetch(`${API_BASE_URL}/wishes/birthday-person-vault`, {
             headers: { "Authorization": `Bearer ${localStorage.getItem("access_token")}` }
           }).then(r => r.ok ? r.json() : null).catch(() => null)
         ]);
@@ -116,7 +124,7 @@ function VaultWishes({ isOffline, offlineVaultData, offlineEventData, onBack }) 
   const submitAnswer = async (ans) => {
     try {
       if (!isOffline) {
-        await fetch(`http://localhost:8000/api/v1/vault/${vaultData.id}/confess`, {
+        await fetch(`${API_BASE_URL}/vault/${vaultData.id}/confess`, {
           method: "POST",
           headers: { "Content-Type": "application/json", "Authorization": `Bearer ${localStorage.getItem("token")}` },
           body: JSON.stringify({ answer: ans })

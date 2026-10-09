@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { getBirthdayVault, getWisherAccessStatus, uploadMedia, getMyWishes, getMyTimeline } from "../service/wishService";
+import { API_BASE_URL } from "../service/authService";
 
 const WisherVaultConfig = () => {
   const [vault, setVault] = useState(null);
@@ -186,7 +187,7 @@ const WisherVaultConfig = () => {
 
       let res;
       if (vault) {
-        res = await fetch(`http://localhost:8000/api/v1/vault/${vault.id}`, {
+        res = await fetch(`${API_BASE_URL}/vault/${vault.id}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
@@ -213,7 +214,7 @@ const WisherVaultConfig = () => {
           setSavingStatus(prev => ({ ...prev, [sectionName]: null }));
           return;
         }
-        res = await fetch(`http://localhost:8000/api/v1/vault/`, {
+        res = await fetch(`${API_BASE_URL}/vault/`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

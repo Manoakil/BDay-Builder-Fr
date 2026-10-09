@@ -263,7 +263,7 @@ export const generateOfflineHtml = (birthdayName, wishes = [], videoWishes = [],
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${birthdayName}'s Celebration</title>
+  <title>Wish Land</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Poppins:wght@300;400;600&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
   <style>${css}</style>
 </head>

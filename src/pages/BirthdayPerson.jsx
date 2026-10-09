@@ -63,6 +63,13 @@ export default function BirthdayPerson() {
   const [orgSettings, setOrgSettings] = useState({});
 
   useEffect(() => {
+    document.title = "Wish Land";
+    return () => {
+      document.title = "Velora Studio";
+    };
+  }, []);
+
+  useEffect(() => {
     const checkEventAccess = async () => {
       setEventLoading(true);
       try {

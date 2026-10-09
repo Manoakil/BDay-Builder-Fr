@@ -15,6 +15,13 @@ import VaultWishes from './pages/VaultWishes';
 
 export default function OfflineApp({ data }) {
   const [step, setStep] = useState('welcome');
+
+  React.useEffect(() => {
+    document.title = "Wish Land";
+    return () => {
+      document.title = "Velora Studio";
+    };
+  }, []);
   
   const event = data.event;
   const birthdayName = event.birthday_person_name;
