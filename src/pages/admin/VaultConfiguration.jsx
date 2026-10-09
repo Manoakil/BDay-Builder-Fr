@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { getVaultForManager, updateVault, getMyBirthdayEvent, getWishesForEvent, createVault } from '../../service/eventService';
-import { uploadMedia, createWish } from '../../service/wishService';
 import { HiOutlineLockClosed, HiOutlineKey, HiOutlineGift, HiOutlineClock } from 'react-icons/hi';
 import { useDialog } from '../../context/DialogContext';
 import "../../style/Admin.css";
@@ -8,7 +7,7 @@ import "../../style/Admin.css";
 function VaultConfiguration() {
   const [vault, setVault] = useState(null);
   const [event, setEvent] = useState(null);
-  const [wishes, setWishes] = useState([]);
+  const [, setWishes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const dialog = useDialog();

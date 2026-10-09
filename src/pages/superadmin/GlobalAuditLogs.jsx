@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { HiOutlineShieldCheck, HiOutlineSearch } from 'react-icons/hi';
+import { HiOutlineSearch } from 'react-icons/hi';
 import { getGlobalAuditLogs } from '../../service/adminService';
 import "../../style/Admin.css";
 

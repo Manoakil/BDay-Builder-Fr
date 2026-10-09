@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
@@ -50,7 +50,7 @@ export default function BirthdayPerson() {
   const [timeline, setTimeline] = useState([]);
   const [event, setEvent] = useState(null);
   const [vault, setVault] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [, setLoading] = useState(false);
   const [eventLoading, setEventLoading] = useState(true);
   
   // Event access state

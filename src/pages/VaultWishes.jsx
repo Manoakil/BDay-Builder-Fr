@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "../style/VaultWishes.css";
-import { getBirthdayVault, attemptBirthdayVault } from "../service/wishService";
+import { getBirthdayVault } from "../service/wishService";
 
 import ScrollReveal from "../components/Birthday/ScrollReveal";
 import WishCard from "../components/Birthday/WishCard";
@@ -135,11 +135,6 @@ function VaultWishes({ isOffline, offlineVaultData, offlineEventData, onBack }) 
     setTimeout(() => {
       document.getElementById("ending")?.scrollIntoView({ behavior: "smooth" });
     }, 100);
-  };
-
-  const handleNo = () => {
-    setAnswer("no");
-    submitAnswer("no");
   };
 
   const handleNoHover = () => {

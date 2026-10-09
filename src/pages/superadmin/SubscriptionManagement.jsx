@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getMyOrganizations } from '../../service/adminService';
 import { updateOrganization } from '../../service/eventService';
-import { HiOutlineCreditCard, HiOutlineBadgeCheck, HiOutlineStar } from 'react-icons/hi';
+import { HiOutlineBadgeCheck, HiOutlineStar } from 'react-icons/hi';
 import { useDialog } from '../../context/DialogContext';
 import "../../style/Admin.css";
 

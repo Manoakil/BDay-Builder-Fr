@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { HiOutlineSparkles, HiOutlineCog, HiOutlineColorSwatch, HiOutlineLockClosed, HiX } from 'react-icons/hi';
+import { HiOutlineSparkles, HiOutlineCog, HiOutlineColorSwatch, HiX } from 'react-icons/hi';
 import { useDialog } from '../../context/DialogContext';
 import "../../style/Admin.css";
 
