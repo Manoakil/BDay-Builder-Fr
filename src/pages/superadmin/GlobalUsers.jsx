@@ -86,7 +86,7 @@ export default function GlobalUsers() {
                     </td>
                     <td data-label="Signed Up At">{new Date(member.created_at).toLocaleString()}</td>
                     <td data-label="Actions" className="actions-cell">
-                      {member.approval_status === 'pending' ? (
+                      {member.approval_status === 'pending' && member.role === 'org_admin' ? (
                         <>
                           <button onClick={() => handleApprove(member.organization_id, member.user_id)} className="action-btn success" title="Approve">
                             <HiOutlineCheck />
