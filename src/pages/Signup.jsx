@@ -30,13 +30,35 @@ function Signup() {
     e.preventDefault();
     setError("");
     setSuccess("");
+
+    if (!form.full_name || form.full_name.trim().length < 2) {
+      setError("Please enter a valid full name.");
+      return;
+    }
+    if (!form.email || !form.email.includes("@")) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+    if (!form.password || form.password.length < 6) {
+      setError("Password must be at least 6 characters long.");
+      return;
+    }
+    if (!form.secret_code || form.secret_code.trim().length < 3) {
+      setError("Please enter a valid secret code.");
+      return;
+    }
+
     setLoading(true);
     try {
       await registerWithCode(form.email, form.password, form.full_name, form.secret_code.trim().toUpperCase(), form.role, form.date_of_birth);
       setSuccess("Registration successful! Redirecting to login.");
       setTimeout(() => navigate("/login"), 1500);
     } catch (err) {
-      setError(err.message);
+      if (err.message.includes("Failed to fetch") || err.message.includes("NetworkError")) {
+        setError("Network error: Could not connect to the backend server. Please check if the server is running and configured correctly.");
+      } else {
+        setError(err.message || "An unexpected error occurred during signup.");
+      }
     } finally {
       setLoading(false);
     }

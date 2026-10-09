@@ -20,12 +20,27 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+
+    if (!email || !email.includes("@")) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+    if (!password || password.length < 6) {
+      setError("Password must be at least 6 characters long.");
+      return;
+    }
+
     setLoading(true);
     try {
       await loginUser(email, password);
       navigate(getRoleHome(), { replace: true });
     } catch (err) {
-      setError(err.message);
+      // Improve error message for network issues (like CORS or server down)
+      if (err.message.includes("Failed to fetch") || err.message.includes("NetworkError")) {
+        setError("Network error: Could not connect to the backend server. Please check if the server is running and configured correctly.");
+      } else {
+        setError(err.message || "An unexpected error occurred during login.");
+      }
     } finally {
       setLoading(false);
     }
