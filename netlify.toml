@@ -5,3 +5,8 @@
 [build.environment]
   CI = "false"
   REACT_APP_API_URL = "https://bdaybuilder.vercel.app/api/v1"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
